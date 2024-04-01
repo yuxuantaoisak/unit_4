@@ -30,4 +30,5 @@ print(test)
 
 ## Proof of work
 
-![Screenshot 2024-03-04 at 20 46 55](https://github.com/yuxuantaoisak/unit_3/assets/144768397/ad07d52d-86cf-45f1-a140-c024fda1a77e)
+<img width="1470" alt="Screenshot 2024-04-01 at 15 21 28" src="https://github.com/yuxuantaoisak/unit_4/assets/144768397/62191aa7-0979-414b-850d-be5ca8e2e3d2">
+
