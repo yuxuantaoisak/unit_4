@@ -32,3 +32,8 @@ print(test)
 
 <img width="1470" alt="Screenshot 2024-04-01 at 15 21 28" src="https://github.com/yuxuantaoisak/unit_4/assets/144768397/62191aa7-0979-414b-850d-be5ca8e2e3d2">
 
+## UML Diagram
+
+<img width="426" alt="Screenshot 2024-04-01 at 15 36 53" src="https://github.com/yuxuantaoisak/unit_4/assets/144768397/75de5ca5-bf9c-45f4-873f-4191ebf0b751">
+
+
