@@ -1,7 +1,4 @@
 ## Solution
 
-1. Explain what is meant by user acceptance testing. 
+![2095](https://github.com/yuxuantaoisak/unit_4/assets/144768397/e5e20dc9-3038-4633-9e05-d6b56a3ea60c)
 
-2. Outline one feature of the operating system that needs to be considered when running a game application. 
-
-   The operating system needs to have input and output in order to communicate between the user and the CPU. 
