@@ -47,5 +47,17 @@ app.secret_key = "randomtextwith12345"
 
 ```
 
+Route table
 
+| Route/endpoint           | Methods   | Description                                                                                    |
+|--------------------------|-----------|------------------------------------------------------------------------------------------------|
+| /login                   | GET, POST | This endpoint allows the user to login into the application. User is stored in the app session |
+| /signup                  | GET, POST |                                                                                                |
+| /mainpage                | GET, POST | A search bar                                                                                   |
+| /profile/<int: user_id>  | GET, POST | Put method to allow editing profile                                                            |
+| /profile/edit            | GET, POST |                                                                                                |
+| /category/<str: cat>     | GET, POST | Put string as input(i.e, anime, suspense)                                                      |
+| /category/<str: cat>/add | GET, POST |                                                                                                |
+| /search                  | GET       |                                                                                                |
+| /admin                   |           | Endpoint for the admin                                                                         |
 
