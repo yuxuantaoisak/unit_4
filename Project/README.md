@@ -1,5 +1,10 @@
 # Criteria C: Development
 
+## Existing tools
+
+## List of techniques used
+
+
 ## Login system
 
 my client required a login system for the application so that different users can have their unique profile pages and post the comments. I initially decided to use cookies
