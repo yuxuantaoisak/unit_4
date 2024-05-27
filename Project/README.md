@@ -69,3 +69,11 @@ Route table
 | /search                  | GET       |                                                                                                |
 | /admin                   |           | Endpoint for the admin                                                                         |
 
+
+# Criteria D: Functionalities
+
+A video demonstrating the testing for the success criteria
+
+# Criteria E: Evaluation
+
+A table of functionality tested. 
