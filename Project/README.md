@@ -26,7 +26,7 @@ def index():
 ```
 
 This code is run when the request from the client received by the server is of type POST `if request.method == "POST"`. This happens when the user clicks on the login button
-on the index.html.page. Then, I proceed to get the variables from the login form including the name and password, this is contained in the dictionary request. After checking
+on the `index.html` page. Then, I proceed to get the variables from the login form including the name and password, this is contained in the dictionary request. After checking
 the database with the SQL query... Then I set the cookie for the user with the code `response.set_cookie('user_id', f"{user_id}")`, note that the cookie is like a
 dictionary with key and values both strings. I used a f string to convert the id which is an integer to a string. 
 
@@ -54,6 +54,35 @@ app = Flask(__name__)
 app.secret_key = "randomtextwith12345"
 
 ```
+
+In order to validate the login status of the current user, I designed a user validation function called `login_needed`. I will explain how it works in detail. 
+
+```.py
+
+def login_needed(f):
+    # Use the wraps function from functools to preserve the original function's name and docstring
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if 'token' not in session:
+            return redirect(url_for('login'))
+        try:
+            # Attempt to decode the token using the secret key
+            # If the token is valid, this will return the data encoded in the token
+            data = jwt.decode(session['token'], token_key, algorithms=['HS256'])
+        except:
+            # If an error occurs (such as if the token is expired or tampered with), redirect the user to the login page
+            return redirect(url_for('login'))
+
+        # If the token is valid, continue to the original function with the original arguments
+        return f(*args, **kwargs)
+
+    # Return the new decorated function
+    return decorated
+
+```
+
+First, the `@wraps` function is used to preserve the metadata of the original function, such as the name and docstring. Then, the next lines check if 'token' key exists in session. If not, the user is redirected to login page. Next, a `try` block attempts to decode the token using `jwt.decode()`. If the token is valid, it will allow the user to proceed within the website that requires authorization, if the token is invalid, expired, or tampered with, the user is redirected to the login page. This solution effectively addresses the authorization issue and enhances the security of the web application.
+
 
 Route table
 
