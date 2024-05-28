@@ -94,9 +94,26 @@ def login_needed(f):
 First, the `@wraps` function is used to preserve the metadata of the original function, such as the name and docstring. Then, the next lines check if 'token' key exists in session. If not, the user is redirected to login page. Next, a `try` block attempts to decode the token using `jwt.decode()`. If the token is valid, it will allow the user to proceed within the website that requires authorization, if the token is invalid, expired, or tampered with, the user is redirected to the login page which is achieved by the use of `except` block. The try/except block can test the first statement, and provides a solution if the first one doesn't work. This solution effectively addresses the authorization issue and enhances the security of the web application.
 
 
-## Profile page
+## Edit/create/delete comments
 
-A profile page is important for a web application like this. It would allow the user to check their personal information(name, email, etc) as well as their liked posts and comments. 
+I decided that the user should be able to edit/delete their comments, which enhances the usability of the website. 
+
+```.py
+
+@app.route('/add_comment/<int:post_id>', methods=['POST'])
+@token_required
+def add_comment(post_id):
+    db = database_worker("shelfshare.db")
+    if request.method == 'POST':
+        comment = request.form['comment']
+        user_id = jwt.decode(session['token'], token_key, algorithms=['HS256'])
+        create_comment = f"INSERT INTO comments (content, datetime, user_id, post_id) VALUES ('{comment}', '{datetime.now()}', '{user_id['user_id']}', '{post_id}')"
+        db.run_save(query=create_comment)
+    return redirect('/post/' + str(post_id))
+
+```
+
+
 
 ## Uploading images
 
