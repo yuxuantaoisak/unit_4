@@ -10,7 +10,7 @@
 
 ## Login system
 
-my client required a login system for the application so that different users can have their unique profile pages and post the comments. I initially decided to use cookies
+A login system for the application is required so that different users can have their unique profile pages and post the comments. I initially decided to use cookies
 as a way of storing when a user is logged in. The code below shows my first attempt and I will explain in detail below. 
 
 ```.py
@@ -27,7 +27,7 @@ def index():
 
 This code is run when the request from the client received by the server is of type POST `if request.method == "POST"`. This happens when the user clicks on the login button
 on the `index.html` page. Then, I proceed to get the variables from the login form including the name and password, this is contained in the dictionary request. After checking
-the database with the SQL query... Then I set the cookie for the user with the code `response.set_cookie('user_id', f"{user_id}")`, note that the cookie is like a
+the database with the SQL query... Then I set the cookie for the user with the code `response.set_cookie('user_id', f"{user_id}")`. Note that the cookie is like a
 dictionary with key and values both strings. I used a f string to convert the id which is an integer to a string. 
 
 
@@ -55,22 +55,32 @@ app.secret_key = "randomtextwith12345"
 
 ```
 
-In order to validate the login status of the current user, I designed a user validation function called `login_needed`. I will explain how it works in detail. 
+However, after doing some research, I realized that simply assigning user IDs to sessions is not a secure practice. A user can easily access the browser's inspector and change the user ID, thus gaining unauthorized access to other users' accounts. 
+
+In order to solve this problem, I decided to use JWT token. Each sebsequent request after the user is logged in will include the JWT, allowing the user to access the routes that are permitted. A user ID encoded with JWT looks like this:
+
+```.py
+jwt.encode({'user_id': user_id}, token_encryption_key, algorithm='HS256')`.
+
+```
+
+With this feature, the login system is safe and free of data leaks so that personal information is protected. 
+
+
+To ensure that some parts of the website are only accessible for authorized users, the login status of the user needs to be confirmed in some routes. In order to validate the login status of the current user, I designed a user validation function called `login_needed`. I will explain how it works in detail. 
+
 
 ```.py
 
 def login_needed(f):
-    # Use the wraps function from functools to preserve the original function's name and docstring
+
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'token' not in session:
             return redirect(url_for('login'))
         try:
-            # Attempt to decode the token using the secret key
-            # If the token is valid, this will return the data encoded in the token
             data = jwt.decode(session['token'], token_key, algorithms=['HS256'])
         except:
-            # If an error occurs (such as if the token is expired or tampered with), redirect the user to the login page
             return redirect(url_for('login'))
 
         # If the token is valid, continue to the original function with the original arguments
@@ -81,8 +91,16 @@ def login_needed(f):
 
 ```
 
-First, the `@wraps` function is used to preserve the metadata of the original function, such as the name and docstring. Then, the next lines check if 'token' key exists in session. If not, the user is redirected to login page. Next, a `try` block attempts to decode the token using `jwt.decode()`. If the token is valid, it will allow the user to proceed within the website that requires authorization, if the token is invalid, expired, or tampered with, the user is redirected to the login page. This solution effectively addresses the authorization issue and enhances the security of the web application.
+First, the `@wraps` function is used to preserve the metadata of the original function, such as the name and docstring. Then, the next lines check if 'token' key exists in session. If not, the user is redirected to login page. Next, a `try` block attempts to decode the token using `jwt.decode()`. If the token is valid, it will allow the user to proceed within the website that requires authorization, if the token is invalid, expired, or tampered with, the user is redirected to the login page which is achieved by the use of `except` block. The try/except block can test the first statement, and provides a solution if the first one doesn't work. This solution effectively addresses the authorization issue and enhances the security of the web application.
 
+
+## Profile page
+
+A profile page is important for a web application like this. It would allow the user to check their personal information(name, email, etc) as well as their liked posts and comments. 
+
+## Uploading images
+
+## Following
 
 Route table
 
@@ -106,3 +124,9 @@ A video demonstrating the testing for the success criteria
 # Criteria E: Evaluation
 
 A table of functionality tested. 
+
+
+# Citations
+
+https://jwt.io/introduction
+
