@@ -126,6 +126,35 @@ First, the code checks if the condition is met(if the request type is post, mean
 
 It was one of the most challenging parts to make my website allow users to upload images. 
 
+Since the images need to be uploaded but also fetched when user is viewing the post, I broke down this problem into 2 steps: uploading the image and fetching it. This shows my computational thinking of decomposition. In the process of uploading images, the name of the image needs to be stored into a folder. I achieved this by the codes below.
+
+```.py
+
+if 'image' in request.files:
+    image = request.files['image']
+    if image.filename != '':
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    else:
+        filename = None
+
+```
+
+This code first checks if the user has submitted an image. Then, the `secure_filename` function is used to sanitize the filename. Otherwise, an insecure filename such as "/xxx/xxx/pswd" will lead to the file being saved in an unintended directory[ref], compromising the website's security and making it prone to malicious activities. Then, the code saves the image into the upload folder. The `os.path.join` concatenates filename and directory, ensuring that correct path separators are used. If the user didn't upload image, the code sets the variable to `None`. Each step of this process shows my algorithmic thinking abilities. 
+
+To fetch the image, I designed an `if` condition in my html side. The code is shown below. 
+
+```.html
+
+{% if post[5] != 'None' %}
+            <img src="/static/photos/{{ post[5] }}" class="img-fluid" alt="Responsive image" style="height: auto; width: 400px;">
+{% endif %}
+
+```
+
+I first fetched the filename if it exists, then put it into the corresponding directory (/static/photos). This ensures that the correct image is fetched from the relevant directory and database. This shows my ability to think abstractly. 
+
+
 ## Following
 
 Route table
@@ -155,4 +184,6 @@ A table of functionality tested.
 # Citations
 
 https://jwt.io/introduction
+
+https://medium.com/@sujathamudadla1213/what-is-the-use-of-secure-filename-in-flask-9eef4c71503b
 
