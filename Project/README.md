@@ -94,28 +94,37 @@ def login_needed(f):
 First, the `@wraps` function is used to preserve the metadata of the original function, such as the name and docstring. Then, the next lines check if 'token' key exists in session. If not, the user is redirected to login page. Next, a `try` block attempts to decode the token using `jwt.decode()`. If the token is valid, it will allow the user to proceed within the website that requires authorization, if the token is invalid, expired, or tampered with, the user is redirected to the login page which is achieved by the use of `except` block. The try/except block can test the first statement, and provides a solution if the first one doesn't work. This solution effectively addresses the authorization issue and enhances the security of the web application.
 
 
-## Edit/create/delete comments
+## Edit/create comments
 
-I decided that the user should be able to edit/delete their comments, which enhances the usability of the website. 
+As part of the requirements of the project, the user should be able to create/edit their comments. 
 
 ```.py
 
-@app.route('/add_comment/<int:post_id>', methods=['POST'])
-@token_required
-def add_comment(post_id):
-    db = database_worker("shelfshare.db")
-    if request.method == 'POST':
-        comment = request.form['comment']
-        user_id = jwt.decode(session['token'], token_key, algorithms=['HS256'])
-        create_comment = f"INSERT INTO comments (content, datetime, user_id, post_id) VALUES ('{comment}', '{datetime.now()}', '{user_id['user_id']}', '{post_id}')"
-        db.run_save(query=create_comment)
-    return redirect('/post/' + str(post_id))
+create_comment = f"INSERT INTO comments (content, datetime, user_id, post_id) VALUES ('{comment}', '{datetime.now()}', '{user_id['user_id']}', '{post_id}')"
+db.run_save(query=create_comment)
+
+```
+This is a snippet of codes from the function responsible for creating comments. An SQL query is used to add the content, time, user id, and post id to the table `comments`, and they are saved into the database by the `run_save` function. 
+
+
+The function of editing existing comments is also required. Initially, I tried to use the same SQL query(insert into) to fulfil this. However, I found out that this would create repeating comments instead of updating the existing ones as required by the user. After researching about SQL queries, I decided to use different SQL statement to achieve this function. Below shows my attempt.
+
+```.py
+
+if request.method == 'POST':
+    content = request.form['content']
+
+    query = f"UPDATE comments SET content='{content}'"
+    db.run_save(query=query)
+    return redirect(url_for('profile'))
 
 ```
 
-
+First, the code checks if the condition is met(if the request type is post, meaning creating or updating a resource). Then, the content of the comment is retrieved by `request.form` dicitonary from the user, and is defined as `content` variable. For the following SQL query, the new value is updated with `update` without creating repeated value, and `set` sets new values into existing values in the `comments` table. This SQL query updates existing comments without creating redundant and repetitive comments. 
 
 ## Uploading images
+
+It was one of the most challenging parts to make my website allow users to upload images. 
 
 ## Following
 
