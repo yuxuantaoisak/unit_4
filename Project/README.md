@@ -1,15 +1,28 @@
-# Unit 4: A better reddit
+# Unit 4: A food review forum: MenuLog
 
 
 # Criteria C: Development
 
 ## Existing tools
 
-SQL queries
+1. SQL queries
+2. Pycharm
+3. Relational databases
+4. Python
+5. Chrome/safari
 
 ## List of techniques used
 
-Sanitizing file
+1. Sanitizing file
+2. Get/post methods
+3. Sessions
+4. Interacting with databases
+5. For loops
+6. If statements
+7. OOP
+8. Token based authentification
+9. CSS styling
+
 
 
 
@@ -220,25 +233,10 @@ Just like how the python code works, the statement `is_liked` from the python fi
 
 
 
-Route table
-
-| Route/endpoint           | Methods   | Description                                                                                    |
-|--------------------------|-----------|------------------------------------------------------------------------------------------------|
-| /login                   | GET, POST | This endpoint allows the user to login into the application. User is stored in the app session |
-| /signup                  | GET, POST |                                                                                                |
-| /mainpage                | GET, POST | A search bar                                                                                   |
-| /profile/<int: user_id>  | GET, POST | Put method to allow editing profile                                                            |
-| /profile/edit            | GET, POST |                                                                                                |
-| /category/<str: cat>     | GET, POST | Put string as input(i.e, anime, suspense)                                                      |
-| /category/<str: cat>/add | GET, POST |                                                                                                |
-| /search                  | GET       |                                                                                                |
-| /admin                   |           | Endpoint for the admin                                                                         |
-
-
 # Criteria D: Functionalities
 
-A video demonstrating the testing for the success criteria
-show db changes
+https://youtu.be/SEhsW7fJ1ug
+
 
 # Criteria E: Evaluation
 
