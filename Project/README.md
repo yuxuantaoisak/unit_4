@@ -156,12 +156,69 @@ To fetch the image, I designed an `if` condition in my html side. The code is sh
 {% endif %}
 
 ```
+Here, `post` is a list with several elements, including title, author, image, etc. `post[5]` refers to the sixth element which is the image. 
 
 I first fetched the filename if it exists, then put it into the corresponding directory (/static/photos). This ensures that the correct image is fetched from the relevant directory and database. This shows my ability to think abstractly. 
 
-(explain post[5])
 
-## Following
+## Liking/unliking posts
+
+As part of the project's requirements, liking/unliking posts is a key feature to this web application. Initially, I used a very simple SQL query to achieve this feature. 
+
+
+```.py
+
+like_query = f"INSERT INTO likes (user_id, post_id) VALUES ('{user_id}', '{post_id}')"
+db.run_save(query=like_query)
+```
+
+The `like_query` interacts with the database `likes`, inserting two values, `user_id` and `post_id` into the database. However, this code would allow the user to like the same post for multiple times, which I wanted to avoid. The user should only be able to like the post once, then the like button should turn to unlike button. 
+
+In order to achieve this, I defined a variable `is_liked`. It checks if the post is already liked by the user or not. With this variable, I am now able to restrict the user from liking multiple times. I will explain how it works in detail. 
+
+
+```.py
+
+check_like_query = f"SELECT * FROM likes WHERE user_id = {user_id} AND post_id = {post_id}"
+is_liked = db.run_fetchone(query=check_like_query)
+
+if is_liked:
+        # If the like record exists, delete it (unlike)
+        unlike_query = f"DELETE FROM likes WHERE user_id = {user_id} AND post_id = {post_id}"
+        db.run_save(query=unlike_query)
+
+else:
+        # If the like record doesn't exist, create it (like)
+        like_query = f"INSERT INTO likes (user_id, post_id) VALUES ('{user_id}', '{post_id}')"
+        db.run_save(query=like_query)
+
+```
+
+The `is_liked` function checks if a like record already exists in the database `likes` which is responsible for all like records of all users and posts. If `is_liked` value is not empty, the query will delete the past like record. Otherwise, a like record will be added to the database. 
+
+Ideally, the button should change from "like" to "unlike" in the process of liking the post, preventing the user from liking twice. To achieve this, I incorporated python code from app.py file into the html file. I will explain below. 
+
+
+```.html
+
+{% if is_liked %}
+    <form action="{{ url_for('like_post', post_id=post[0]) }}" method="POST">
+        <button type="submit" class="btn btn-primary me-2">
+            <i class="bi bi-heart-fill"></i> Unlike
+        </button>
+    </form>
+{% else %}
+    <form action="{{ url_for('like_post', post_id=post[0]) }}" method="POST">
+        <button type="submit" class="btn btn-outline-primary me-2">
+            <i class="bi bi-heart"></i> Like
+        </button>
+    </form>
+{% endif %}
+
+```
+Just like how the python code works, the statement `is_liked` from the python file checks if the post is liked or not. If yes, an unfollow button is generated using the line `<i class="bi bi-heart-fill"></i> Unlike`. Otherwise, a like button is generated with the line `<i class="bi bi-heart"></i> Like`. During the thought process, I showed pattern recognition as a computational thinking skill where I realized that the python variable can be used in html file to create a button that changes between "like" and "unlike". 
+
+
 
 Route table
 
