@@ -5,7 +5,12 @@
 
 ## Existing tools
 
+SQL queries
+
 ## List of techniques used
+
+Sanitizing file
+
 
 
 ## Login system
@@ -154,6 +159,7 @@ To fetch the image, I designed an `if` condition in my html side. The code is sh
 
 I first fetched the filename if it exists, then put it into the corresponding directory (/static/photos). This ensures that the correct image is fetched from the relevant directory and database. This shows my ability to think abstractly. 
 
+(explain post[5])
 
 ## Following
 
@@ -175,11 +181,11 @@ Route table
 # Criteria D: Functionalities
 
 A video demonstrating the testing for the success criteria
+show db changes
 
 # Criteria E: Evaluation
 
-A table of functionality tested. 
-
+general feedback in a paragraph, with transcript in appendix
 
 # Citations
 
