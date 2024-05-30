@@ -1,4 +1,4 @@
-# Unit 4: A food review forum: MenuLog
+# Unit 4: A food review web application: MenuLog
 
 
 # Criteria C: Development
@@ -45,7 +45,7 @@ def index():
 
 This code is run when the request from the client received by the server is of type POST `if request.method == "POST"`. This happens when the user clicks on the login button
 on the `index.html` page. Then, I proceed to get the variables from the login form including the name and password, this is contained in the dictionary request. After checking
-the database with the SQL query... Then I set the cookie for the user with the code `response.set_cookie('user_id', f"{user_id}")`. Note that the cookie is like a
+the database with a SQL query, I set the cookie for the user with the code `response.set_cookie('user_id', f"{user_id}")`. Note that the cookie is like a
 dictionary with key and values both strings. I used a f string to convert the id which is an integer to a string. 
 
 
