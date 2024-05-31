@@ -240,11 +240,46 @@ https://youtu.be/UgSG4TuRcic
 
 # Criteria E: Evaluation
 
-general feedback in a paragraph, with transcript in appendix
+## Evaluation by alpha tester
+
+The tester is very impressed with the sorting tabs on top, which has a navigation and sorting function that the tester found very useful. Moreover, the tester likes the following tab where they can check the followed posts. However, they suggested that the visual design of the rating of posts that are categorized as [restaurant] can be more appealing and stood-out, enhancing the user experience. Also, they would love to see the total likes of a post. Also, the tester highlighted that they need to go to profile page every time to delete or edit a comment/post, which makes it a complicated process especially for those who intend to edit their posts often. This feedback is very valuable for the future development of this project. 
+
+## Evaluation by beta tester
+
+The tester appreciates the function of sorting posts by time and likes. However, they suggested that the navigation can be done easier by just clicking the category line, such as [recipe], on the post, instead of going to the navigation tab every time. They suggested that this can be done simply by using a "GET" method, which can make the text a hyperlink to the respective category. Moreover, the tester mentioned that the sorting function on the main page can be further improved. It would be good if there are options such as "oldest" or "least liked" which can reflect the history of discussions and posts that are underappreciated. The tester said that this can be done by interacting with the database, just like other existing sorting functions. This feedback is very valuable for the future development of this project. 
+
+See transcript for interview in appendix
 
 # Citations
 
 https://jwt.io/introduction
 
 https://medium.com/@sujathamudadla1213/what-is-the-use-of-secure-filename-in-flask-9eef4c71503b
+
+
+# Appendix
+
+## Evidence of consultation
+
+Interview transcript from alpha tester: 
+
+I recently got to test the new app, and I’ve got to say, I’m really impressed with a lot of its features. The sorting tabs at the top are awesome—they make navigating and finding what I need super easy. The "following" tab is another great feature. It’s so handy to have a spot where I can quickly check the posts I’m following.
+
+But I do have a couple of suggestions. The rating design for [restaurant] posts could be a bit more eye-catching. It would make the app look cooler and improve the user experience. Also, showing the total likes on a post more prominently would be great. It gives a better idea of what’s popular and could boost engagement.
+
+One thing that’s a bit of a hassle is having to go to my profile page to delete or edit a comment or post. It’s a bit clunky, especially for frequent edits. It would be awesome if we could do that directly from the post or comment itself.
+
+Overall, the app is really promising, and I’m excited to see these improvements in future updates!
+
+
+Interview transcript from beta tester:
+
+I recently tested the new app, and I appreciate several of its features, especially the ability to sort posts by time and likes. However, I have a few suggestions for improvement.
+
+Firstly, navigation could be simplified. Instead of going to the navigation tab every time, it would be much easier if clicking on the category line (e.g., [recipe]) on a post would take you directly to that category. This can be implemented using a simple "GET" method to make the category text a hyperlink to the respective category page.
+
+Additionally, the sorting function on the main page could be enhanced. It would be beneficial to include options like "oldest" or "least liked" to better reflect the history of discussions and highlight posts that may be underappreciated. This can be achieved by interacting with the database similarly to how the existing sorting functions are implemented.
+
+Overall, these enhancements would make the app more user-friendly and efficient. This feedback is crucial for the future development of the project, and I'm looking forward to seeing these improvements in future updates.
+
 
