@@ -53,7 +53,7 @@ However, based on my research about cookies and testing in the browser, I found 
 stored in the browser on the client side, which can be easily changed, causing identity thief if not hashed. So my solution to this issue was to change from client to
 server side by using sessions. 
 
-The code below shows that I could store the current user in the dictionary session. "xxx" [ref 1]
+The code below shows that I could store the current user in the dictionary session.
 
 ```.py
 
@@ -75,7 +75,7 @@ app.secret_key = "randomtextwith12345"
 
 However, after doing some research, I realized that simply assigning user IDs to sessions is not a secure practice. A user can easily access the browser's inspector and change the user ID, thus gaining unauthorized access to other users' accounts. 
 
-In order to solve this problem, I decided to use JWT token. Each sebsequent request after the user is logged in will include the JWT, allowing the user to access the routes that are permitted. A user ID encoded with JWT looks like this:
+In order to solve this problem, I decided to use JWT token. Each sebsequent request after the user is logged in will include the JWT, allowing the user to access the routes that are permitted[ref 1]. A user ID encoded with JWT looks like this:
 
 ```.py
 jwt.encode({'user_id': user_id}, token_encryption_key, algorithm='HS256')`.
@@ -158,7 +158,7 @@ if 'image' in request.files:
 
 ```
 
-This code first checks if the user has submitted an image. Then, the `secure_filename` function is used to sanitize the filename. Otherwise, an insecure filename such as "/xxx/xxx/pswd" will lead to the file being saved in an unintended directory[ref], compromising the website's security and making it prone to malicious activities. Then, the code saves the image into the upload folder. The `os.path.join` concatenates filename and directory, ensuring that correct path separators are used. If the user didn't upload image, the code sets the variable to `None`. Each step of this process shows my algorithmic thinking abilities. 
+This code first checks if the user has submitted an image. Then, the `secure_filename` function is used to sanitize the filename. Otherwise, an insecure filename such as "/xxx/xxx/pswd" will lead to the file being saved in an unintended directory[ref 2], compromising the website's security and making it prone to malicious activities. Then, the code saves the image into the upload folder. The `os.path.join` concatenates filename and directory, ensuring that correct path separators are used. If the user didn't upload image, the code sets the variable to `None`. Each step of this process shows my algorithmic thinking abilities. 
 
 To fetch the image, I designed an `if` condition in my html side. The code is shown below. 
 
@@ -252,14 +252,16 @@ See transcript for interview in appendix
 
 # Citations
 
-https://jwt.io/introduction
+1. "JWT Introduction", Accessed 31 May, 2024. https://jwt.io/introduction
 
-https://medium.com/@sujathamudadla1213/what-is-the-use-of-secure-filename-in-flask-9eef4c71503b
+2. "What is the use of secure_filename if flask", Accessed 31 May, 2024. https://medium.com/@sujathamudadla1213/what-is-the-use-of-secure-filename-in-flask-9eef4c71503b
 
 
 # Appendix
 
 ## Evidence of consultation
+
+
 
 Interview transcript from alpha tester: 
 
@@ -270,6 +272,14 @@ But I do have a couple of suggestions. The rating design for [restaurant] posts 
 One thing that’s a bit of a hassle is having to go to my profile page to delete or edit a comment or post. It’s a bit clunky, especially for frequent edits. It would be awesome if we could do that directly from the post or comment itself.
 
 Overall, the app is really promising, and I’m excited to see these improvements in future updates!
+
+
+
+
+
+
+
+
 
 
 Interview transcript from beta tester:
