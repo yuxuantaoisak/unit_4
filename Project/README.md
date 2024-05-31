@@ -263,7 +263,7 @@ See transcript for interview in appendix
 
 
 
-Interview transcript from alpha tester: 
+### Interview transcript from alpha tester: 
 
 I recently got to test the new app, and I’ve got to say, I’m really impressed with a lot of its features. The sorting tabs at the top are awesome—they make navigating and finding what I need super easy. The "following" tab is another great feature. It’s so handy to have a spot where I can quickly check the posts I’m following.
 
@@ -275,14 +275,7 @@ Overall, the app is really promising, and I’m excited to see these improvement
 
 
 
-
-
-
-
-
-
-
-Interview transcript from beta tester:
+### Interview transcript from beta tester:
 
 I recently tested the new app, and I appreciate several of its features, especially the ability to sort posts by time and likes. However, I have a few suggestions for improvement.
 
