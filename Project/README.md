@@ -235,7 +235,7 @@ Just like how the python code works, the statement `is_liked` from the python fi
 
 # Criteria D: Functionalities
 
-https://youtu.be/SEhsW7fJ1ug
+https://youtu.be/UgSG4TuRcic
 
 
 # Criteria E: Evaluation
