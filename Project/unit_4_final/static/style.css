@@ -1,0 +1,99 @@
+/* Importing a new font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* General styles for body in log-res page */
+.body_log-res {
+    background-image: url("https://deepdreamgenerator.com/storage/fast_queue/temp_images/b2fd80f964e0890380d124a37a6f4d6e9a247933.jpg");
+    background-color: #E0F7FA; /* Light cyan color */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #212121; /* Dark grey color */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* General styles for body in index page */
+.body_index {
+    background-color: #B2DFDB; /* Light teal color */
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: #004D40; /* Dark teal color */
+    padding: 20px;
+}
+
+/* Additional styles for buttons and other elements */
+button {
+    background-color: #004D40; /* Dark teal color */
+    color: #FFFFFF; /* White color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #00796B; /* Teal color */
+}
+
+.card {
+    background-color: #FFFFFF; /* White color */
+    border: 1px solid #BDBDBD; /* Light grey border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #004D40; /* Dark teal color */
+}
+
+.card-subtitle {
+    font-size: 18px;
+    color: #00796B; /* Teal color */
+}
+
+.card-text {
+    font-size: 16px;
+    color: #212121; /* Dark grey color */
+}
+
+/* Styles for links */
+a {
+    color: #004D40; /* Dark teal color */
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .body_log-res, .body_index {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .card {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

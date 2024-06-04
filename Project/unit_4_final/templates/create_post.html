@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Create Post</h1>
+        <form action="{{ url_for('create_post') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group mb-1">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group mb-1">
+                <label for="category">Category:</label>
+                <select class="form-select" aria-label="Default select example" id="category" name="category" required onchange="toggleRestaurantFields()">
+                    <option value="" selected disabled>Select Category</option>
+                    <option value="Restaurants">Restaurants</option>
+                    <option value="Location">Location</option>
+                    <option value="Recipe">Recipe</option>
+                </select>
+            </div>
+            <div id="restaurant-fields" style="display: none;">
+                <div class="form-group mb-1">
+                    <label for="rating">Rating:</label>
+                    <input type="range" class="form-control" id="rating" name="rating" min="1" max="5">
+                </div>
+                <div class="form-group mb-1">
+                    <label for="tags">Cuisine Styles:</label>
+                    <select class="form-select" id="tags" name="tags" multiple>
+                        <option value="Italian">Italian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Takeout">Takeout</option>
+                        <option value="Bar">Bar</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mb-1">
+                <label for="content">Content:</label>
+                <textarea class="form-control mb-2" id="content" name="content" rows="10" required></textarea>
+            </div>
+            <div class="form-group mb-2">
+                <label for="image">Image Upload</label>
+                <input type="file" class="form-control-file" name="image" id="image">
+            </div>
+            <button type="submit" class="btn btn-light">Submit</button>
+            <a href="/" class="btn btn-light">Cancel</a>
+        </form>
+    </div>
+
+    <script>
+        function toggleRestaurantFields() {
+            var category = document.getElementById("category").value;
+            var restaurantFields = document.getElementById("restaurant-fields");
+            if (category === "Restaurants") {
+                restaurantFields.style.display = "block";
+            } else {
+                restaurantFields.style.display = "none";
+            }
+        }
+    </script>
+{% endblock %}

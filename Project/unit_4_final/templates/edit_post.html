@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Post</h1>
+    <form action="{{ url_for('edit_post', post_id=post[0]) }}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="post_id" value="{{ post[0] }}">
+        <div class="form-group mb-1">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ post[1] }}" required>
+        </div>
+        <div class="form-group mb-1">
+            <label for="category">Category:</label>
+            <select class="form-select" aria-label="Default select example" name="category" required>
+                <option value="" disabled>Select Category</option>
+                <option value="Restaurant" {% if post.category == "Restaurant" %}selected{% endif %}>Restaurant</option>
+                <option value="Location" {% if post.category == "Location" %}selected{% endif %}>Location</option>
+                <option value="Recipe" {% if post.category == "Recipe" %}selected{% endif %}>Recipe</option>
+                <option value="Following" {% if post.category == "Following" %}selected{% endif %}>Following</option>
+            </select>
+        </div>
+        <div class="form-group mb-1">
+            <label for="content">Content:</label>
+            <textarea class="form-control mb-2" id="content" name="content" rows="10" required>{{ post[3] }}</textarea>
+        </div>
+        <div class="form-group mb-2">
+            <label for="image">Image Upload</label>
+            <input type="file" class="form-control-file" name="image" id="image">
+        </div>
+        <button type="submit" class="btn btn-light">Save Changes</button> <a href="/profile" class="btn btn-light">Cancel</a>
+    </form>
+</div>
+{% endblock %}
